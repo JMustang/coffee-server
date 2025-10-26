@@ -23,3 +23,6 @@ stop_container:
 
 remove_container:
 	docker rm ${DB_DOCKER_CONTAINER}
+
+create_migration:
+	sqlx migrate add -r init
