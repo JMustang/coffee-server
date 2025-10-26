@@ -20,3 +20,6 @@ start_container:
 
 stop_container:
 	docker stop ${DB_DOCKER_CONTAINER}
+
+remove_container:
+	docker rm ${DB_DOCKER_CONTAINER}
