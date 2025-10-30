@@ -43,6 +43,7 @@ build:
 
 run: build
 	./${BINARY}
+	@echo "server running..."
 	
 stop:
 	@echo "stopping server..."
