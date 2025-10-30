@@ -40,3 +40,13 @@ build:
 	fi	
 	@echo "Building binary..."
 	go build -o ${BINARY} cmd/server/*.go
+
+run: build
+	./${BINARY}
+	
+stop:
+	@echo "stopping server..."
+	@-pkill -SIGTERM -f "./${BINARY}"
+	@echo "server stopped..."
+
+.PHONY: stop_containers create_container create_db start_container stop_container remove_container create_migration migrate_up migrate_down build run stop
