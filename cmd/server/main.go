@@ -35,5 +35,30 @@ func (app *Application) Serve() error {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("❌ Error loading .env file")
+	}
 
+	cfg := Config{
+		Port: os.Getenv("PORT"),
+	}
+
+	// TODO: DB connection
+	// dsn := os.Getenv("DSN")
+	// dbConn, err := db.ConnectPostgres(dsn)
+	// if err != nil {
+	// 	log.Fatal("❌ Cannot connect to database")
+	// }
+
+	app := &Application{
+		config: cfg,
+		// TODO: Add models later
+		// Models: services.New(dbConn.DB),
+	}
+
+	err = app.Serve()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
