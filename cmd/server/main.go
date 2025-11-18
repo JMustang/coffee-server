@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/JMustang/coffee-server/db"
+	"github.com/JMustang/coffee-server/services"
 	"github.com/joho/godotenv"
 )
 
@@ -16,7 +17,7 @@ type Config struct {
 
 type Application struct {
 	config Config
-	// Models services.Models
+	Models services.Models
 }
 
 func (app *Application) Serve() error {
