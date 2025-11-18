@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/JMustang/coffee-server/db"
+	"github.com/JMustang/coffee-server/router"
 	"github.com/JMustang/coffee-server/services"
 	"github.com/joho/godotenv"
 )
@@ -29,9 +30,8 @@ func (app *Application) Serve() error {
 	fmt.Println("✅ API is listening on http://localhost:" + port)
 
 	srv := &http.Server{
-		Addr: fmt.Sprintf(":%s", port),
-		// TODO: add router
-		// Handler: router.Router(),
+		Addr:    fmt.Sprintf(":%s", port),
+		Handler: router.Router(),
 	}
 	return srv.ListenAndServe()
 }
@@ -56,8 +56,7 @@ func main() {
 
 	app := &Application{
 		config: cfg,
-		// TODO: Add models later
-		// Models: services.New(dbConn.DB),
+		Models: services.New(dbConn.DB),
 	}
 
 	err = app.Serve()
